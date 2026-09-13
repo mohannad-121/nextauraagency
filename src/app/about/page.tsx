@@ -2,6 +2,7 @@ import { constructMetadata } from "@/lib/seo";
 import { FOUNDERS } from "@/data/founders";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { LeaderCard } from "@/components/about/LeaderCard";
 
 export const metadata = constructMetadata({
   title: "About NextAura Agency & Leadership",
@@ -14,7 +15,7 @@ export default function AboutPage() {
     <main className="relative bg-[#050505] text-[#F4F0E7] pt-32 pb-24 px-6 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="ABOUT NEXTAURA"
+          eyebrow="LEADERSHIP"
           title="WE ARE"
           serifTitle="NEXTAURA AGENCY."
           description="A multidisciplinary technology group, creative studio, and product lab based in Jordan, operating globally."
@@ -39,24 +40,12 @@ export default function AboutPage() {
             eyebrow="LEADERSHIP"
             title="THE FOUNDERS &"
             serifTitle="LEADERSHIP."
+            description="Engineering the future of digital architecture, intelligent systems, and interactive creative technology."
           />
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto justify-items-center">
             {FOUNDERS.map((founder) => (
-              <div
-                key={founder.name}
-                className="rounded-3xl border border-white/10 bg-[#0D0D0D] p-8 space-y-4 hover:border-[#C9A45C]/40 transition-colors"
-              >
-                <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                  <h3 className="text-2xl font-light text-white">{founder.name}</h3>
-                  <span className="text-xs font-mono text-[#C9A45C] uppercase font-semibold">
-                    {founder.role}
-                  </span>
-                </div>
-                <p className="text-xs leading-relaxed text-[#8D8D8D] pt-2">
-                  {founder.bio}
-                </p>
-              </div>
+              <LeaderCard key={founder.name} founder={founder} />
             ))}
           </div>
         </div>

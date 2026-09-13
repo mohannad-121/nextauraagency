@@ -1,0 +1,228 @@
+.cardContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 320px;
+  height: 350px;
+  background: #0D0D0D;
+  border-radius: 32px;
+  padding: 3px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 40px 40px -20px, rgba(201, 164, 92, 0.15) 0px 0px 25px 0px;
+  border: 1px solid rgba(201, 164, 92, 0.25);
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.card .mail {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.2rem;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 164, 92, 0.3);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card .mail svg {
+  stroke: #C9A45C;
+  stroke-width: 2px;
+  width: 18px;
+  height: 18px;
+  transition: all 0.3s ease;
+}
+
+.card .mail:hover {
+  background: rgba(201, 164, 92, 0.2);
+  border-color: #E5C77A;
+  transform: scale(1.08);
+}
+
+.card .mail:hover svg {
+  stroke: #E5C77A;
+}
+
+.card .profilePic {
+  position: absolute;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  top: 3px;
+  left: 3px;
+  border-radius: 29px;
+  z-index: 1;
+  border: 0px solid #C9A45C;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+  background: #080808;
+}
+
+.card .profilePic img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: center 15%;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.card .bottom {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  background: linear-gradient(155deg, #181510 0%, #0D0C0A 60%, #080808 100%);
+  border: 1px solid rgba(201, 164, 92, 0.3);
+  top: 78%;
+  border-radius: 29px;
+  z-index: 2;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px 0px inset, rgba(201, 164, 92, 0.1) 0px 1px 0px 0px inset;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  backdrop-filter: blur(12px);
+}
+
+.card .bottom .content {
+  position: absolute;
+  bottom: 0;
+  left: 1.25rem;
+  right: 1.25rem;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .bottom .content .roleBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-family: monospace;
+  letter-spacing: 0.15em;
+  color: #C9A45C;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.card .bottom .content .name {
+  display: block;
+  font-size: 1.35rem;
+  color: #F4F0E7;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.card .bottom .content .aboutMe {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #9C9C9C;
+  margin-top: 0.6rem;
+}
+
+.card .bottom .bottomBottom {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.card .bottom .bottomBottom .socialLinksContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card .bottom .bottomBottom .socialLinksContainer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.card .bottom .bottomBottom .socialLinksContainer svg {
+  height: 18px;
+  width: 18px;
+  fill: #C9A45C;
+  color: #C9A45C;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  transition: all 0.3s ease;
+}
+
+.card .bottom .bottomBottom .socialLinksContainer a:hover svg {
+  fill: #E5C77A;
+  color: #E5C77A;
+  transform: scale(1.2);
+}
+
+.card .bottom .bottomBottom .button {
+  background: linear-gradient(135deg, #8A6A32 0%, #E0C176 50%, #A98342 100%);
+  color: #050505;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.85rem;
+  box-shadow: 0 4px 12px rgba(201, 164, 92, 0.25);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.card .bottom .bottomBottom .button:hover {
+  background: #E5C77A;
+  color: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(201, 164, 92, 0.4);
+}
+
+.card:hover {
+  border-top-left-radius: 55px;
+  border-color: rgba(201, 164, 92, 0.6);
+  box-shadow: rgba(0, 0, 0, 0.9) 0px 50px 50px -20px, rgba(201, 164, 92, 0.3) 0px 0px 35px 0px;
+}
+
+.card:hover .bottom {
+  top: 18%;
+  border-radius: 80px 29px 29px 29px;
+  border-color: rgba(201, 164, 92, 0.5);
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+}
+
+.card:hover .profilePic {
+  width: 95px;
+  height: 95px;
+  aspect-ratio: 1;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  z-index: 3;
+  border: 5px solid #C9A45C;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 16px 0px, 0 0 15px rgba(201, 164, 92, 0.3);
+  transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+}
+
+.card:hover .profilePic:hover {
+  transform: scale(1.15);
+  border-radius: 16px;
+  border-color: #E5C77A;
+}
+
+.card:hover .profilePic img {
+  transform: scale(2.2);
+  object-position: center 20%;
+  transition: all 0.5s ease-in-out 0.5s;
+}
