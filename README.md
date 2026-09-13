@@ -38,11 +38,12 @@ src/
       ai/page.tsx               # NextAura AI Division Portal
       studios/page.tsx          # NextAura Studios Division Portal
       fit/page.tsx              # NextAura Fit Division Portal
+      os/page.tsx               # NextAura OS Division Portal
     work/                       # Portfolio Showcase
       [slug]/page.tsx           # Dynamic Case Study Engine
     products/                   # Proprietary Products
       fitcoach-ai/page.tsx      # Standalone FitCoach AI Launch Page
-    about/page.tsx              # Brand Story & Leadership (Mohannad, Moayad, Farah)
+    about/page.tsx              # Brand Story & Leadership (Mohannad, Moayad)
     contact/page.tsx            # Multi-Division Inquiry Form
     privacy/page.tsx            # Privacy Policy
     terms/page.tsx              # Terms of Service

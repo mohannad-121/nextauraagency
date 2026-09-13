@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 export const metadata = constructMetadata({
   title: "About NextAura Agency & Leadership",
   description:
-    "Learn about NextAura Agency, our founders Mohannad, Moayad, and Farah, and our philosophy on engineering intelligent digital products.",
+    "Learn about NextAura Agency, our founders Mohannad and Moayad, and our philosophy on engineering intelligent digital products.",
 });
 
 export default function AboutPage() {
@@ -38,10 +38,10 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="LEADERSHIP"
             title="THE FOUNDERS &"
-            serifTitle="STAKEHOLDERS."
+            serifTitle="LEADERSHIP."
           />
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {FOUNDERS.map((founder) => (
               <div
                 key={founder.name}

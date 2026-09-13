@@ -16,9 +16,4 @@ export const FOUNDERS: Founder[] = [
     role: "Co-Founder",
     bio: "Leading creative technology, mobile product development, and interactive experiments at NextAura Studios.",
   },
-  {
-    name: "Farah",
-    role: "Co-Owner",
-    bio: "Overseeing operations, strategic partnerships, and human performance innovation across NextAura Fit.",
-  },
 ];
