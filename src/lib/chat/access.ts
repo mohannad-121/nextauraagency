@@ -1,9 +1,25 @@
 import { createSupabaseRequestClient } from "@/lib/supabase/server";
 
+async function authenticatedUserId(client: Awaited<ReturnType<typeof createSupabaseRequestClient>>, request?: Request) {
+  const authorization = request?.headers.get("authorization");
+  const token = authorization?.match(/^Bearer\s+(.+)$/i)?.[1];
+
+  // API callers supply their browser's Supabase session as a bearer token. Validate
+  // that token explicitly; a client configured with request headers does not keep an
+  // Auth session in server storage for auth.getClaims() to read.
+  if (token) {
+    const { data, error } = await client.auth.getUser(token);
+    if (error) throw error;
+    return data.user?.id;
+  }
+
+  const { data } = await client.auth.getClaims();
+  return data?.claims?.sub;
+}
+
 export async function requireVisitor(request?: Request) {
   const client = await createSupabaseRequestClient(request);
-  const { data } = await client.auth.getClaims();
-  const userId = data?.claims?.sub;
+  const userId = await authenticatedUserId(client, request);
   if (!userId) throw new Error("Anonymous chat session is required.");
 
   const { data: existing, error } = await client
@@ -25,8 +41,7 @@ export async function requireVisitor(request?: Request) {
 
 export async function requireAgent(request?: Request) {
   const client = await createSupabaseRequestClient(request);
-  const { data } = await client.auth.getClaims();
-  const userId = data?.claims?.sub;
+  const userId = await authenticatedUserId(client, request);
   if (!userId) throw new Error("Authentication is required.");
 
   const { data: agent, error } = await client
