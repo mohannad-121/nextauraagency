@@ -51,8 +51,6 @@ export function SearchBar() {
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 100);
-    } else {
-      setQuery("");
     }
   }, [isOpen]);
 
