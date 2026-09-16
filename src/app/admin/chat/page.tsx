@@ -6,8 +6,8 @@ export const dynamic = "force-dynamic";
 
 async function loadConversations() {
   try {
-    const { service } = await requireAgent();
-    const { data } = await service.from("chat_conversations").select("*, chat_visitors(name, email, phone)").order("last_message_at", { ascending: false });
+    const { client } = await requireAgent();
+    const { data } = await client.from("chat_conversations").select("*, chat_visitors(name, email, phone)").order("last_message_at", { ascending: false });
     return data ?? [];
   } catch {
     redirect("/admin/login");

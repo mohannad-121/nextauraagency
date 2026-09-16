@@ -5,11 +5,11 @@ import { requireVisitor } from "@/lib/chat/access";
 export async function POST(request: Request) {
   try {
     const body = (await request.json().catch(() => ({}))) as { language?: string };
-    const { visitor, service } = await requireVisitor();
+    const { visitor, client } = await requireVisitor();
     const language = body.language === "ar" ? "ar" : "en";
-    await service.from("chat_visitors").update({ preferred_language: language, last_seen_at: new Date().toISOString() }).eq("id", visitor.id);
+    await client.from("chat_visitors").update({ preferred_language: language, last_seen_at: new Date().toISOString() }).eq("id", visitor.id);
 
-    const { data: conversation, error } = await service
+    const { data: conversation, error } = await client
       .from("chat_conversations")
       .select("*")
       .eq("visitor_id", visitor.id)
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     if (error) throw error;
 
     if (!conversation) return NextResponse.json({ visitor, conversation: null, messages: [], language: detectLanguage("", language) });
-    const { data: messages, error: messageError } = await service
+    const { data: messages, error: messageError } = await client
       .from("chat_messages")
       .select("*")
       .eq("conversation_id", conversation.id)
