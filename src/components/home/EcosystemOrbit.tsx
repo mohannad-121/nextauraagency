@@ -63,7 +63,7 @@ export function EcosystemOrbit() {
                         </span>
                         {div.externalUrl && (
                           <span className="rounded bg-[#C9A45C]/20 px-1.5 py-0.5 text-[9px] font-mono text-[#E5C77A] lowercase">
-                            {div.externalUrl.replace("https://", "")}
+                            Visit {div.name}
                           </span>
                         )}
                       </div>
@@ -178,7 +178,7 @@ export function EcosystemOrbit() {
                   rel="noopener noreferrer"
                   className="group inline-flex items-center space-x-2 rounded-full border border-[#C9A45C]/40 bg-[#C9A45C]/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-[#E5C77A] hover:border-[#E5C77A] hover:bg-[#C9A45C] hover:text-[#050505] transition-all shadow-lg shadow-[#C9A45C]/10"
                 >
-                  <span>Visit {activeDivision.name} ({activeDivision.externalUrl.replace("https://", "")})</span>
+                  <span>Visit {activeDivision.name}</span>
                   <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               ) : (

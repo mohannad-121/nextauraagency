@@ -63,7 +63,7 @@ export default function NextAuraStudiosPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 rounded-full border border-[#E5C77A]/40 bg-[#E5C77A]/10 px-6 py-3 text-xs font-semibold uppercase tracking-widest text-[#E5C77A] hover:border-[#E5C77A] hover:bg-[#E5C77A] hover:text-[#050505] transition-all shadow-lg"
             >
-              <span>Launch NextAura Studios</span>
+              <span>Visit NextAura Studios</span>
               <ArrowUpRight className="h-4 w-4" />
             </a>
 

@@ -11,6 +11,7 @@ export interface Division {
   badge: string;
   capabilities: string[];
   externalUrl?: string;
+  logoSrc: string;
   featuredProduct?: {
     name: string;
     description: string;
@@ -48,6 +49,7 @@ export const DIVISIONS: Division[] = [
       "Custom API Engineering",
     ],
     externalUrl: "https://www.next-aura-ai.com",
+    logoSrc: "/logos/nextaura-ai.png",
   },
   {
     id: "studios",
@@ -76,6 +78,7 @@ export const DIVISIONS: Division[] = [
       "Product Experimentation",
     ],
     externalUrl: "https://nextaura-studios.onrender.com",
+    logoSrc: "/logos/nextaura-studios.png",
   },
   {
     id: "fit",
@@ -103,6 +106,7 @@ export const DIVISIONS: Division[] = [
       "Biometric Data Visualizations",
     ],
     externalUrl: "https://aifitcoach.dev/",
+    logoSrc: "/logos/nextaura-fit.jpg",
     featuredProduct: {
       name: "FITCOACH AI",
       slug: "fitcoach-ai",
@@ -137,5 +141,6 @@ export const DIVISIONS: Division[] = [
       "Terminal & Developer Tools",
     ],
     externalUrl: "https://nextauraos.tech/",
+    logoSrc: "/logos/nextaura-os.png",
   },
 ];

@@ -72,7 +72,7 @@ export function DivisionShowcase() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center space-x-2 rounded-full border border-[#C9A45C]/40 bg-[#C9A45C]/10 px-6 py-3 text-xs font-semibold uppercase tracking-widest text-[#E5C77A] hover:border-[#E5C77A] hover:bg-[#C9A45C] hover:text-[#050505] transition-all shadow-lg"
                     >
-                      <span>Visit {div.name} Domain</span>
+                      <span>Visit {div.name}</span>
                       <ExternalLink className="h-4 w-4" />
                     </a>
                   ) : (

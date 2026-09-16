@@ -66,7 +66,7 @@ export default function NextAuraAIPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-1.5 text-xs font-mono text-[#8D8D8D] hover:text-[#C9A45C] transition-colors"
             >
-              <span>Existing NextAura AI Website</span>
+              <span>Visit NextAura AI</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           </div>

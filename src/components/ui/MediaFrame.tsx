@@ -60,8 +60,9 @@ export function MediaFrame({
           src={src}
           alt={alt}
           fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
           onError={() => setImageError(true)}
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className="object-contain p-10 transition-transform duration-700 group-hover:scale-105"
         />
       ) : (
         /* Procedural Luxury Architectural Visual Fallback */
@@ -102,11 +103,6 @@ export function MediaFrame({
             </p>
           </div>
 
-          {/* Bottom HUD Lines */}
-          <div className="relative z-10 flex items-center justify-between border-t border-white/5 pt-3 text-[9px] font-mono text-[#8D8D8D]">
-            <span>LATITUDE: 31.9539° N</span>
-            <span>STATUS: RENDER ACTIVE</span>
-          </div>
         </div>
       )}
 

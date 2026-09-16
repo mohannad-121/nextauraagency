@@ -86,18 +86,20 @@ export default function DivisionsPage() {
                     title={`Open ${div.name}`}
                   >
                     <MediaFrame
+                      src={div.logoSrc}
                       alt={div.name}
                       type={div.id as "ai" | "studios" | "fit" | "os"}
                       aspectRatio="16/9"
                       badge={div.badge}
                     />
                     <div className="absolute top-4 right-4 z-20 flex items-center space-x-1.5 rounded-full bg-black/80 px-3 py-1 border border-[#C9A45C]/40 text-[10px] font-mono text-[#E5C77A] backdrop-blur-md transition-all shadow-lg group-hover/media:border-[#E5C77A]">
-                      <span>Visit {div.externalUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}</span>
+                      <span>Visit {div.name}</span>
                       <ArrowUpRight className="h-3 w-3" />
                     </div>
                   </a>
                 ) : (
                   <MediaFrame
+                    src={div.logoSrc}
                     alt={div.name}
                     type={div.id as "ai" | "studios" | "fit" | "os"}
                     aspectRatio="16/9"

@@ -65,7 +65,7 @@ export default function NextAuraOSPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 rounded-full border border-[#C9A45C]/40 bg-[#C9A45C]/10 px-6 py-3 text-xs font-semibold uppercase tracking-widest text-[#E5C77A] hover:border-[#E5C77A] hover:bg-[#C9A45C] hover:text-[#050505] transition-all shadow-lg shadow-[#C9A45C]/10"
             >
-              <span>Launch NextAura OS (nextauraos.tech)</span>
+              <span>Visit NextAura OS</span>
               <ExternalLink className="h-4 w-4" />
             </a>
 
@@ -105,7 +105,7 @@ export default function NextAuraOSPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-xs font-mono text-[#E5C77A] hover:text-white transition-colors"
                 >
-                  <span>Open live OS in new tab</span>
+                  <span>Visit NextAura OS</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
               </div>
