@@ -1,7 +1,7 @@
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabaseRequestClient } from "@/lib/supabase/server";
 
-export async function requireVisitor() {
-  const client = await createSupabaseServerClient();
+export async function requireVisitor(request?: Request) {
+  const client = await createSupabaseRequestClient(request);
   const { data } = await client.auth.getClaims();
   const userId = data?.claims?.sub;
   if (!userId) throw new Error("Anonymous chat session is required.");
@@ -23,8 +23,8 @@ export async function requireVisitor() {
   return { userId, visitor, client };
 }
 
-export async function requireAgent() {
-  const client = await createSupabaseServerClient();
+export async function requireAgent(request?: Request) {
+  const client = await createSupabaseRequestClient(request);
   const { data } = await client.auth.getClaims();
   const userId = data?.claims?.sub;
   if (!userId) throw new Error("Authentication is required.");

@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Message must be between 1 and 2000 characters." }, { status: 400 });
     }
 
-    const { visitor, client } = await requireVisitor();
+    const { visitor, client } = await requireVisitor(request);
     if (!allowChatRequest(visitor.id)) return NextResponse.json({ error: "Please wait a moment before sending another message." }, { status: 429 });
 
     let conversation = null;

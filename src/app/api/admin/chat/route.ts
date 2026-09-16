@@ -6,7 +6,7 @@ type Action = typeof validActions[number];
 
 export async function GET(request: Request) {
   try {
-    const { client } = await requireAgent();
+    const { client } = await requireAgent(request);
     const conversationId = new URL(request.url).searchParams.get("conversationId");
     if (conversationId) {
       const { data, error } = await client.from("chat_messages").select("*").eq("conversation_id", conversationId).order("created_at", { ascending: true });
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { action?: Action; conversationId?: string; content?: string };
     if (!body.action || !validActions.includes(body.action) || !body.conversationId) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
-    const { agent, client } = await requireAgent();
+    const { agent, client } = await requireAgent(request);
     const now = new Date().toISOString();
 
     if (body.action === "accept") {

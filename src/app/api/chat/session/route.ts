@@ -5,7 +5,7 @@ import { requireVisitor } from "@/lib/chat/access";
 export async function POST(request: Request) {
   try {
     const body = (await request.json().catch(() => ({}))) as { language?: string };
-    const { visitor, client } = await requireVisitor();
+    const { visitor, client } = await requireVisitor(request);
     const language = body.language === "ar" ? "ar" : "en";
     await client.from("chat_visitors").update({ preferred_language: language, last_seen_at: new Date().toISOString() }).eq("id", visitor.id);
 

@@ -57,7 +57,12 @@ export function ChatWidget() {
         if (!userData.user) await supabase.auth.signInAnonymously();
         const detected = navigator.language.startsWith("ar") ? "ar" : "en";
         setLanguage(detected);
-        const response = await fetch("/api/chat/session", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ language: detected }) });
+        const { data: sessionData } = await supabase.auth.getSession();
+        const response = await fetch("/api/chat/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...(sessionData.session ? { Authorization: `Bearer ${sessionData.session.access_token}` } : {}) },
+          body: JSON.stringify({ language: detected }),
+        });
         if (!response.ok) return;
         const data = await response.json() as { conversation: RawConversation | null; messages: RawMessage[]; language: ChatLanguage };
         setLanguage(data.language);
@@ -87,7 +92,12 @@ export function ChatWidget() {
     if (!text || sending || conversation?.status === "closed") return;
     setSending(true);
     try {
-      const response = await fetch("/api/chat/message", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: text, conversationId: conversation?.id }) });
+      const { data: sessionData } = await supabaseRef.current?.auth.getSession() ?? { data: { session: null } };
+      const response = await fetch("/api/chat/message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...(sessionData.session ? { Authorization: `Bearer ${sessionData.session.access_token}` } : {}) },
+        body: JSON.stringify({ message: text, conversationId: conversation?.id }),
+      });
       const data = await response.json() as { error?: string; conversation?: RawConversation; messages?: RawMessage[] };
       if (!response.ok) throw new Error(data.error);
       if (data.conversation) setConversation(toConversation(data.conversation));

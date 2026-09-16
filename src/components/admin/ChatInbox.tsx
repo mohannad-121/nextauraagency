@@ -16,9 +16,13 @@ export function ChatInbox({ initialConversations }: { initialConversations: Conv
   const [draft, setDraft] = useState("");
   const selected = conversations.find((item) => item.id === selectedId);
   const shown = useMemo(() => conversations.filter((item) => filter === "all" || item.status === filter), [conversations, filter]);
+  const authHeaders = async (): Promise<Record<string, string>> => {
+    const { data } = await createBrowserSupabaseClient().auth.getSession();
+    return data.session ? { Authorization: `Bearer ${data.session.access_token}` } : {};
+  };
 
   const refreshConversations = async () => {
-    const response = await fetch("/api/admin/chat");
+    const response = await fetch("/api/admin/chat", { headers: await authHeaders() });
     if (!response.ok) return;
     const data = await response.json() as { conversations: Conversation[] };
     setConversations(data.conversations);
@@ -38,7 +42,7 @@ export function ChatInbox({ initialConversations }: { initialConversations: Conv
   useEffect(() => {
     if (!selectedId) return;
     const loadMessages = async () => {
-      const response = await fetch(`/api/admin/chat?conversationId=${selectedId}`);
+      const response = await fetch(`/api/admin/chat?conversationId=${selectedId}`, { headers: await authHeaders() });
       if (!response.ok) return;
       const data = await response.json() as { messages: Message[] };
       setMessages(data.messages);
@@ -48,11 +52,11 @@ export function ChatInbox({ initialConversations }: { initialConversations: Conv
 
   const action = async (actionName: "accept" | "return_to_ai" | "close" | "send", content?: string) => {
     if (!selected) return;
-    const response = await fetch("/api/admin/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: actionName, conversationId: selected.id, content }) });
+    const response = await fetch("/api/admin/chat", { method: "POST", headers: { "Content-Type": "application/json", ...(await authHeaders()) }, body: JSON.stringify({ action: actionName, conversationId: selected.id, content }) });
     if (!response.ok) return;
     if (actionName === "send") setDraft("");
     await refreshConversations();
-    const messagesResponse = await fetch(`/api/admin/chat?conversationId=${selected.id}`);
+    const messagesResponse = await fetch(`/api/admin/chat?conversationId=${selected.id}`, { headers: await authHeaders() });
     if (messagesResponse.ok) setMessages((await messagesResponse.json() as { messages: Message[] }).messages);
   };
 

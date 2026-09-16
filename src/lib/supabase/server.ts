@@ -1,4 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 
 function config() {
@@ -22,5 +23,15 @@ export async function createSupabaseServerClient() {
         }
       },
     },
+  });
+}
+
+export async function createSupabaseRequestClient(request?: Request) {
+  const authorization = request?.headers.get("authorization");
+  if (!authorization) return createSupabaseServerClient();
+  const { url, key } = config();
+  return createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: { headers: { Authorization: authorization } },
   });
 }
